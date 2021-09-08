@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+    rekoda:
+        build: .
+        restart: unless-stopped
+        environment:
+          - REKODA_LOG_LEVEL="info"
+          - REKODA_STREAMS_DIR=""
+          - REKODA_CONF_FILE=""

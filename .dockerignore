@@ -1,0 +1,9 @@
+1/
+go.mod
+go.sum
+.git
+docker-compose.yml
+LICENSE
+rekoda
+.gitignore
+
