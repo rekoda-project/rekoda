@@ -74,6 +74,7 @@ func Start() {
 	for {
 		ctxLog.Debugf("Channels being recorded right now: %v", r.Online)
 		for _, u := range c.Channels {
+			defer recoverFromPanic()
 			ctxLog.Tracef("Checking %v", u.User)
 			if u.Enabled && !r.IsOnline(u.User) {
 				cLog := ctxLog.WithField("channel", u.User)
@@ -154,6 +155,7 @@ func (r *Recorder) Rec(log *log.Entry, c *config.Config, channel config.Channels
 // DownloadSegment is mainly used as a goroutine which accepts new .ts chunks to be downloaded from GetPlaylist() function and then merges them into local file.
 // Also updates and report total duration and bytes of current stream
 func (r *Recorder) DownloadSegment(log *log.Entry, filepath string, dlc chan *Segment) {
+	defer recoverFromPanic()
 	ctxLog := log.WithField("status", "DOWNLOAD").WithField("func", "SEG")
 	var totalBytes uint64 = 0
 	var bytes int64
@@ -203,6 +205,7 @@ func (r *Recorder) DownloadSegment(log *log.Entry, filepath string, dlc chan *Se
 func (r *Recorder) GetPlaylist(log *log.Entry, channel config.Channels, urlStr string, dlc chan *Segment) {
 	r.AddOnline(channel.User)
 	defer r.RemoveOnline(channel.User)
+	defer recoverFromPanic()
 
 	ctxLog := log.WithField("status", "DOWNLOAD").WithField("func", "GET")
 
@@ -380,6 +383,7 @@ func TimeIn(t time.Time, name string) (time.Time, error) {
 
 // doRequestWithRetries makes GET request, if failed it retries 3 more times with backoff timer
 func (r *Recorder) doRequestWithRetries(req *http.Request) (*http.Response, error) {
+	defer recoverFromPanic()
 	ctxLog := log.WithField("general", "GET")
 	var err error
 	var res *http.Response
@@ -428,5 +432,11 @@ func (r *Recorder) RemoveOnline(u string) {
 		if v == u {
 			r.Online = append(r.Online[:i], r.Online[i+1:]...)
 		}
+	}
+}
+
+func recoverFromPanic() {
+	if r := recover(); r != nil {
+		log.Errorf("Recovering from panic:", r)
 	}
 }

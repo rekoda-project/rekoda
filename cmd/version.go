@@ -7,7 +7,7 @@ import (
 
 const (
 	APP     = "Rekōdā"
-	VERSION = "0.0.1"
+	VERSION = "0.1.1"
 )
 
 func NewVersionCmd() *cobra.Command {
