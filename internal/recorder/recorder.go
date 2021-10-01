@@ -23,7 +23,7 @@ import (
 
 var (
 	USER_AGENT      = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101 Firefox/86.0"
-	backoffSchedule = []time.Duration{1 * time.Second, 2 * time.Second, 3 * time.Second}
+	backoffSchedule = []time.Duration{1 * time.Second, 2 * time.Second, 4 * time.Second, 10 * time.Second}
 )
 
 type Recorder struct {
@@ -88,28 +88,19 @@ func Start() {
 				switch u.Quality {
 				case "best":
 					cLog.Info("Opening stream: best quality")
-					hlsURL, err := pl.Best()
-					if err != nil {
-						ctxLog.Error(err)
-					}
-					cLog.Debugf("URL: %v", hlsURL)
-					r.Rec(cLog, c, u, hlsURL)
+					url := pl.Best().AsURL()
+					cLog.Debugf("URL: %v", url)
+					r.Rec(cLog, c, u, url)
 				case "worst":
 					cLog.Info("Opening stream: worst quality")
-					hlsURL, err := pl.Worst()
-					if err != nil {
-						ctxLog.Error(err)
-					}
-					cLog.Debugf("URL: %v", hlsURL)
-					r.Rec(cLog, c, u, hlsURL)
+					url := pl.Worst().AsURL()
+					cLog.Debugf("URL: %v", url)
+					r.Rec(cLog, c, u, url)
 				case "audio_only":
 					cLog.Info("Opening stream: audio_only")
-					hlsURL, err := pl.Audio()
-					if err != nil {
-						ctxLog.Error(err)
-					}
-					cLog.Debugf("URL: %v", hlsURL)
-					r.Rec(cLog, c, u, hlsURL)
+					url := pl.Audio().AsURL()
+					cLog.Debugf("URL: %v", url)
+					r.Rec(cLog, c, u, url)
 
 				}
 			}
@@ -306,7 +297,7 @@ func (r *Recorder) GetPlaylist(log *log.Entry, channel config.Channels, urlStr s
 // RefreshPlaylist is used to update direct link to m3u8 live playlist
 func (r *Recorder) RefreshPlaylist(log *log.Entry, channel config.Channels) (string, error) {
 	ctxLog := log.WithField("func", "REFRESH")
-	var hlsURL string
+	var url string
 
 	ctxLog.Info("Trying to refresh m3u8 playlist")
 	pl, err := twitchpl.Get(channel.User)
@@ -315,29 +306,20 @@ func (r *Recorder) RefreshPlaylist(log *log.Entry, channel config.Channels) (str
 	}
 	switch channel.Quality {
 	case "best":
-		hlsURL, err = pl.Best()
-		if err != nil {
-			return "", err
-		}
+		url = pl.Best().AsURL()
 	case "worst":
-		hlsURL, err = pl.Worst()
-		if err != nil {
-			return "", err
-		}
+		url = pl.Worst().AsURL()
 	case "audio_only":
-		hlsURL, err = pl.Audio()
-		if err != nil {
-			return "", err
-		}
+		url = pl.Audio().AsURL()
 	}
-	ctxLog.Debugf("m3u8 URL updated: %v", hlsURL)
-	return hlsURL, nil
+	ctxLog.Debugf("m3u8 URL updated: %v", url)
+	return url, nil
 }
 
 // WaitForRestart is used to prevent making multiple stream files by writing stream to the same file in case of channel coming online again in a few minutes
 func (r *Recorder) WaitForRestart(log *log.Entry, channel config.Channels) (string, error) {
 	ctxLog := log.WithField("func", "WAIT")
-	var hlsURL string
+	var url string
 	var pl *twitchpl.PlaylistManager
 	var err error
 
@@ -352,22 +334,13 @@ func (r *Recorder) WaitForRestart(log *log.Entry, channel config.Channels) (stri
 		}
 		switch channel.Quality {
 		case "best":
-			hlsURL, err = pl.Best()
-			if err != nil {
-				return "", err
-			}
+			url = pl.Best().AsURL()
 		case "worst":
-			hlsURL, err = pl.Worst()
-			if err != nil {
-				return "", err
-			}
+			url = pl.Worst().AsURL()
 		case "audio_only":
-			hlsURL, err = pl.Audio()
-			if err != nil {
-				return "", err
-			}
+			url = pl.Audio().AsURL()
 		}
-		return hlsURL, nil
+		return url, nil
 	}
 	return "", errors.New("channel was offline for 10 minutes")
 }
@@ -437,6 +410,6 @@ func (r *Recorder) RemoveOnline(u string) {
 
 func recoverFromPanic() {
 	if r := recover(); r != nil {
-		log.Errorf("Recovering from panic:", r)
+		log.Errorf("Recovering from panic: '%v'", r)
 	}
 }
