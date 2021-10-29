@@ -12,7 +12,7 @@ Your best new friend for your Kappa needs
 - 0️⃣  **Independent**. Zero run-time dependency. Does not depends on ```ffmpeg``` or ```streamlink```
 - 🧠 **Smart**. Avoids making lot of files. If stream goes down, it waits and tries to reconnect to continue writing into the same file.
 - ⚙ **Efficient**. Low CPU and RAM usage. ~20 MB average RAM usage
-- 🚀 **Crossplatform**. Supports ```Windows```, ```Linux```, ```macOS```, ```Raspberry Pi (ARM)``` and other OS & platforms
+- 🚀 **Crossplatform**. Supports ```Windows```, ```Linux```, ```macOS```, ```Raspberry Pi (arm)``` and other OS & platforms
 
 # 📦 Installation
 You need ```go``` installed. Get it here ➡ [golang.org](https://golang.org/)
