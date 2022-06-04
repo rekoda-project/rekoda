@@ -2,16 +2,16 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/wmw9/rekoda/internal/config"
+	"github.com/wmw64/rekoda/internal/config"
 )
 
-//var CfgFile string
+// var CfgFile string
 
 func NewRootCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "rekoda",
 		Short: "📼  " + APP + "v" + VERSION + "- Automatic Twitch Recorder",
-		Long:  "📼  " + APP + " v" + VERSION + " - Automatic Twitch Recorder. Homepage: https://github.com/wmw9/rekoda",
+		Long:  "📼  " + APP + " v" + VERSION + " - Automatic Twitch Recorder. Homepage: https://github.com/wmw64/rekoda",
 	}
 }
 
@@ -44,12 +44,12 @@ func Execute() {
 }
 
 func init() {
-	//rootCmd := NewRootCmd()
+	// rootCmd := NewRootCmd()
 	//	cobra.OnInitialize(config.InitConfig)
 
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 	rootCmd.PersistentFlags().StringVarP(&config.FlagLogLevel, "verbose", "v", "", "Set log level: trace, debug, info (default is 'info')")
 	rootCmd.PersistentFlags().StringVarP(&config.FlagConfigFile, "config", "c", "", "Custom config file (default is $HOME/rekoda/rekoda.toml)")
 	rootCmd.PersistentFlags().StringVarP(&config.FlagStreamsDir, "output", "o", "", "Custom stream directory to download (default is $HOME/rekoda/streams)")
-	//rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

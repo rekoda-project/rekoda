@@ -5,7 +5,6 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/stretchr/testify/assert"
-	//"github.com/wmw9/rekoda/internal/config"
 )
 
 func TestMakeDefaultConfStruct(t *testing.T) {
