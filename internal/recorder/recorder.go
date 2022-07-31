@@ -17,8 +17,8 @@ import (
 	"github.com/hako/durafmt"
 	lru "github.com/hashicorp/golang-lru"
 	log "github.com/sirupsen/logrus"
-	"github.com/wmw9/rekoda/internal/config"
-	"github.com/wmw9/twitchpl"
+	"github.com/wmw64/rekoda/internal/config"
+	"github.com/wmw64/twitchpl"
 )
 
 var (
@@ -182,7 +182,7 @@ func (r *Recorder) DownloadSegment(log *log.Entry, filepath string, dlc chan *Se
 
 		totalBytes += uint64(bytes)
 		duration := durafmt.Parse(v.totalDuration).LimitFirstN(1).String()
-		//speed := uint64(v.totalDuration * time.Millisecond)
+		// speed := uint64(v.totalDuration * time.Millisecond)
 
 		ctxLog.Infof("Written %v (%v)", humanize.Bytes(totalBytes), duration)
 	}
@@ -361,8 +361,8 @@ func (r *Recorder) doRequestWithRetries(req *http.Request) (*http.Response, erro
 	var err error
 	var res *http.Response
 
-	//req.Close = true
-	//req.Header.Set("Connection", "close") // prevent 'too many open files' error
+	// req.Close = true
+	// req.Header.Set("Connection", "close") // prevent 'too many open files' error
 	req.Header.Set("User-Agent", USER_AGENT)
 
 	for _, backoff := range backoffSchedule {

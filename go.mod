@@ -1,6 +1,6 @@
-module github.com/wmw9/rekoda
+module github.com/wmw64/rekoda
 
-go 1.17
+go 1.18
 
 require (
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
@@ -14,7 +14,7 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/cobra v1.2.1
 	github.com/stretchr/testify v1.7.1-0.20210427113832-6241f9ab9942
-	github.com/wmw9/twitchpl v0.3.7
+	github.com/wmw64/twitchpl v0.3.7
 	golang.org/x/sys v0.0.0-20210823070655-63515b42dcdf // indirect
 )
 

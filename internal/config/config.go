@@ -7,7 +7,7 @@ import (
 	"github.com/mitchellh/go-homedir"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	conf "github.com/wmw9/rekoda/pkg/config/toml"
+	conf "github.com/wmw64/rekoda/pkg/config/toml"
 )
 
 const ConfigFile = "rekoda.toml"
@@ -188,17 +188,17 @@ func (c *Config) SetStreamsDir(ctxLog *log.Entry) {
 
 // Save writes current Config struct into rekoda.toml file
 func (c *Config) Save() error {
-	//log.Println(ConfigStruct.Channels)
+	// log.Println(ConfigStruct.Channels)
 	if err := conf.Save(c.ConfigFile, &c); err != nil {
 		return err
 	}
-	//conf.Load(configFilePath, &ConfigStruct)
+	// conf.Load(configFilePath, &ConfigStruct)
 	return nil
 }
 
 // Load reads back from rekoda.toml file and unmarshal int Config struct
 func (c *Config) Load() error {
-	//log.Printf("ConfigFilePath: '%v' \n c: '%v'", ConfigFilePath, c)
+	// log.Printf("ConfigFilePath: '%v' \n c: '%v'", ConfigFilePath, c)
 	err := conf.Load(c.ConfigFile, c)
 	if err != nil {
 		return err

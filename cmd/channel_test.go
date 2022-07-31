@@ -37,7 +37,7 @@ func TestNewRemoveCmd(t *testing.T) {
 	removeCmd := NewRemoveCmd()
 
 	channelCmd.AddCommand(removeCmd)
-	//rootCmd.AddCommand(channelCmd)
+	// rootCmd.AddCommand(channelCmd)
 
 	c, _, err := ExecuteCommandC(channelCmd, "remove", "reckful")
 	if err != nil {
