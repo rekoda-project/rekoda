@@ -18,7 +18,7 @@ import (
 	"github.com/hako/durafmt"
 	lru "github.com/hashicorp/golang-lru"
 	log "github.com/sirupsen/logrus"
-	"github.com/kappaflow/rekoda/internal/config"
+	"github.com/rekoda-project/rekoda/internal/config"
 	"github.com/wmw64/twitchpl"
 )
 

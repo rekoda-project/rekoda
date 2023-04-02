@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/kappaflow/rekoda/internal/config"
+	"github.com/rekoda-project/rekoda/internal/config"
 )
 
 // var CfgFile string

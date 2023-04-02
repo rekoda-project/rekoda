@@ -1,4 +1,4 @@
-module github.com/kappaflow/rekoda
+module github.com/rekoda-project/rekoda
 
 go 1.18
 
