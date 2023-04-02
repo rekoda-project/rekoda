@@ -5,7 +5,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"rekoda/internal/config"
+	"github.com/kappaflow/rekoda/internal/config"
 )
 
 var (

@@ -4,7 +4,7 @@ import (
 	"net/http"
 	_ "net/http/pprof"
 
-	"rekoda/cmd"
+	"github.com/kappaflow/rekoda/cmd"
 )
 
 func init() {

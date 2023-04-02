@@ -1,4 +1,4 @@
-module rekoda
+module github.com/kappaflow/rekoda
 
 go 1.18
 

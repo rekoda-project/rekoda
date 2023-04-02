@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"rekoda/internal/recorder"
+	"github.com/kappaflow/rekoda/internal/recorder"
 )
 
 // recCmd represents the rec command
