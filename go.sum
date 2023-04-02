@@ -238,8 +238,8 @@ github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/
 github.com/stretchr/testify v1.7.1-0.20210427113832-6241f9ab9942 h1:t0lM6y/M5IiUZyvbBTcngso8SZEZICH7is9B6g/obVU=
 github.com/stretchr/testify v1.7.1-0.20210427113832-6241f9ab9942/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/subosito/gotenv v1.2.0/go.mod h1:N0PQaV/YGNqwC0u51sEeR/aUtSLEXKX9iv69rRypqCw=
-github.com/wmw9/twitchpl v0.3.7 h1:ln3QPZAZ9388QFJ3VjqXQtQBgI3cfC9jlJSP00NmSXE=
-github.com/wmw9/twitchpl v0.3.7/go.mod h1:HqM7n208VAbEnR9AnfeedUfL7F7eo/kDq9zpd3xY2NE=
+github.com/wmw64/twitchpl v0.5.0 h1:0CgkH2ld2X0W24ttLbhJ2lGOOEk1k+gwLor1zKeBkC4=
+github.com/wmw64/twitchpl v0.5.0/go.mod h1:MBrmcKkr0VSfxURXUC4fhq9wxuSHQhvl1wdzdlZ6+Gs=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

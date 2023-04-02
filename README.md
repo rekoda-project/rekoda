@@ -17,7 +17,7 @@ Your best new friend for your Kappa needs
 # 📦 Installation
 You need ```go``` installed. Get it here ➡ [golang.org](https://golang.org/)
 ```console
-go install github.com/wmw64/rekoda@latest
+go install github.com/rekoda-project/rekoda@latest
 ```
 
 # 🔬 Basic usage 

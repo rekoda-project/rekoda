@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/wmw64/rekoda/internal/recorder"
+	"github.com/rekoda-project/rekoda/internal/recorder"
 )
 
 // recCmd represents the rec command
