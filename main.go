@@ -4,12 +4,12 @@ import (
 	"net/http"
 	_ "net/http/pprof"
 
-	"github.com/wmw64/rekoda/cmd"
+	"rekoda/cmd"
 )
 
 func init() {
 	go func() {
-		http.ListenAndServe(":8969", nil) // pprof
+		http.ListenAndServe("localhost:8969", nil) // pprof
 	}()
 }
 

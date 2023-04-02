@@ -1,6 +1,7 @@
 package recorder
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"io"
@@ -17,7 +18,7 @@ import (
 	"github.com/hako/durafmt"
 	lru "github.com/hashicorp/golang-lru"
 	log "github.com/sirupsen/logrus"
-	"github.com/wmw64/rekoda/internal/config"
+	"rekoda/internal/config"
 	"github.com/wmw64/twitchpl"
 )
 
@@ -79,7 +80,7 @@ func Start() {
 			if u.Enabled && !r.IsOnline(u.User) {
 				cLog := ctxLog.WithField("channel", u.User)
 				cLog.Info("Trying to get m3u8 live playlist")
-				pl, err := twitchpl.Get(u.User)
+				pl, err := twitchpl.Get(context.Background(), u.User, true)
 				if err != nil {
 					cLog.Info("Channel is offline or banned.")
 					continue
@@ -300,7 +301,7 @@ func (r *Recorder) RefreshPlaylist(log *log.Entry, channel config.Channels) (str
 	var url string
 
 	ctxLog.Info("Trying to refresh m3u8 playlist")
-	pl, err := twitchpl.Get(channel.User)
+	pl, err := twitchpl.Get(context.Background(), channel.User, true)
 	if err != nil {
 		return "", err
 	}
@@ -327,7 +328,7 @@ func (r *Recorder) WaitForRestart(log *log.Entry, channel config.Channels) (stri
 		ctxLog.Infof("Sleep for 30 seconds. Try %v/20", i)
 		time.Sleep(30 * time.Second)
 		ctxLog.Info("Checking if channel went online again (restart)")
-		pl, err = twitchpl.Get(channel.User)
+		pl, err = twitchpl.Get(context.Background(), channel.User, true)
 		if err != nil {
 			ctxLog.Info("Channel is still offline")
 			continue

@@ -1,4 +1,4 @@
-module github.com/wmw64/rekoda
+module rekoda
 
 go 1.18
 
@@ -14,9 +14,10 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/cobra v1.2.1
 	github.com/stretchr/testify v1.7.1-0.20210427113832-6241f9ab9942
-	github.com/wmw64/twitchpl v0.3.7
 	golang.org/x/sys v0.0.0-20210823070655-63515b42dcdf // indirect
 )
+
+require github.com/wmw64/twitchpl v0.5.0
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect

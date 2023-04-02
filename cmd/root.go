@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/wmw64/rekoda/internal/config"
+	"rekoda/internal/config"
 )
 
 // var CfgFile string
